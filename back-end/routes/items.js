@@ -1,11 +1,11 @@
 const express = require("express");
+const { fetchAndParseF1Store } = require("../services/f1StoreScraper");
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json([
-    { id: 1, name: "Item One" },
-    { id: 2, name: "Item Two" },
-  ]);
+router.get("/", async (req, res) => {
+  const items = await fetchAndParseF1Store();
+  res.json(items);
 });
 
 module.exports = router;
